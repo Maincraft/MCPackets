@@ -35,7 +35,7 @@ public class PlayerLookPacketImpl extends AbstractPacket implements PlayerLookPa
     }
 
     @Override
-    public boolean isOnGround() {
+    public boolean getOnGround() {
         return onGround;
     }
 

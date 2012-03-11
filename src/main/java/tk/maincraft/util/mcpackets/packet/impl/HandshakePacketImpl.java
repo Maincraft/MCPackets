@@ -6,16 +6,16 @@ import tk.maincraft.util.mcpackets.serialization.Type;
 
 public class HandshakePacketImpl extends AbstractPacket implements HandshakePacket {
     @Serialize(type = Type.STRING, order = 0)
-    private final String messageOrName;
+    private final String messageOrUsername;
 
     public HandshakePacketImpl(String messageOrName) {
         super();
-        this.messageOrName = messageOrName;
+        this.messageOrUsername = messageOrName;
     }
 
     @Override
     public String getMessageOrUsername() {
-        return messageOrName;
+        return messageOrUsername;
     }
 
     @Override
@@ -25,6 +25,6 @@ public class HandshakePacketImpl extends AbstractPacket implements HandshakePack
 
     @Override
     public String getToStringDescription() {
-        return String.format("message=\"%s\"", messageOrName);
+        return String.format("message=\"%s\"", messageOrUsername);
     }
 }

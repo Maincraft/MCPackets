@@ -7,7 +7,7 @@ public interface MapChunkPacket extends Packet {
 
     int getZ();
 
-    boolean isGroundUpContinuous();
+    boolean getGroundUpContinuous();
 
     int getPrimaryBitMap();
 

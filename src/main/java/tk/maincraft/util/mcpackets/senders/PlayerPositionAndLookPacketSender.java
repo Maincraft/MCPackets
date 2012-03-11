@@ -15,6 +15,6 @@ public final class PlayerPositionAndLookPacketSender extends AbstractPacketSende
         stream.writeDouble(packet.getZ());
         stream.writeFloat(packet.getYaw());
         stream.writeFloat(packet.getPitch());
-        stream.writeBoolean(packet.isOnGround());
+        stream.writeBoolean(packet.getOnGround());
     }
 }

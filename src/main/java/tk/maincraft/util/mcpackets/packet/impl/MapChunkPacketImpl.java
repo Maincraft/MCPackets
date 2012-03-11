@@ -20,7 +20,7 @@ public class MapChunkPacketImpl extends AbstractPacket implements MapChunkPacket
     @Serialize(type = Type.INT, order = 6)
     private final int unused_int_0;
     @Serialize(type = Type.BYTE_ARRAY, order = 7, moreInfo = 5)
-    private final byte[] chunkData;
+    private final byte[] compressedChunkData;
 
     public MapChunkPacketImpl(int x, int z, boolean groundUpContinuous, int primaryBitMap, int addBitMap, byte[] chunkData) {
         this(x, z, groundUpContinuous, primaryBitMap, addBitMap, 0, chunkData);
@@ -39,7 +39,7 @@ public class MapChunkPacketImpl extends AbstractPacket implements MapChunkPacket
         this.addBitMap = addBitMap;
         this.compressedSize = compressedSize;
         this.unused_int_0 = unused_int_0;
-        this.chunkData = chunkData;
+        this.compressedChunkData = chunkData;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class MapChunkPacketImpl extends AbstractPacket implements MapChunkPacket
     }
 
     @Override
-    public boolean isGroundUpContinuous() {
+    public boolean getGroundUpContinuous() {
         return groundUpContinuous;
     }
 
@@ -84,13 +84,13 @@ public class MapChunkPacketImpl extends AbstractPacket implements MapChunkPacket
 
     @Override
     public byte[] getCompressedChunkData() {
-        return chunkData;
+        return compressedChunkData;
     }
 
     @Override
     public String getToStringDescription() {
         return String.format(
                 "x=\"%d\",z=\"%d\",groundUpContinuous=\"%b\",primaryBitMap=\"%d\",addBitMap=\"%d\",compressedSize=\"%d\",unused_int_0=\"%d\",chunkData=byte[%d]",
-                        x, z, groundUpContinuous, primaryBitMap, addBitMap, compressedSize, unused_int_0, chunkData.length);
+                        x, z, groundUpContinuous, primaryBitMap, addBitMap, compressedSize, unused_int_0, compressedChunkData.length);
     }
 }

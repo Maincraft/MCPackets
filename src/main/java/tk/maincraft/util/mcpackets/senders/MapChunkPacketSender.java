@@ -9,7 +9,7 @@ public final class MapChunkPacketSender extends AbstractPacketSender<MapChunkPac
     public void sendData(DataOutput stream, MapChunkPacket packet) throws IOException {
         stream.writeInt(packet.getX());
         stream.writeInt(packet.getZ());
-        stream.writeBoolean(packet.isGroundUpContinuous());
+        stream.writeBoolean(packet.getGroundUpContinuous());
         stream.writeShort(packet.getPrimaryBitMap());
         stream.writeShort(packet.getAddBitMap());
         stream.writeInt(packet.getCompressedSize());

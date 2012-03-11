@@ -11,5 +11,5 @@ public interface PlayerPositionPacket extends Packet {
 
     double getZ();
 
-    boolean isOnGround();
+    boolean getOnGround();
 }

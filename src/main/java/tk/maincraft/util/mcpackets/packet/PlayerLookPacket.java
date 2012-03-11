@@ -7,5 +7,5 @@ public interface PlayerLookPacket extends Packet {
 
     float getPitch();
 
-    boolean isOnGround();
+    boolean getOnGround();
 }

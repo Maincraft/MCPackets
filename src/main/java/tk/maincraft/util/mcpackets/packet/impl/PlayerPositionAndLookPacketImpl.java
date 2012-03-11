@@ -67,7 +67,7 @@ public class PlayerPositionAndLookPacketImpl extends AbstractPacket implements P
     }
 
     @Override
-    public boolean isOnGround() {
+    public boolean getOnGround() {
         return onGround;
     }
 

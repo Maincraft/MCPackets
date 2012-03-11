@@ -8,7 +8,7 @@ public class NamedEntitySpawnPacketImpl extends AbstractPacket implements NamedE
     @Serialize(type = Type.INT, order = 0)
     private final int entityId;
     @Serialize(type = Type.STRING, order = 1)
-    private final String playerName;
+    private final String entityName;
     @Serialize(type = Type.INT, order = 2)
     private final int x;
     @Serialize(type = Type.INT, order = 3)
@@ -25,7 +25,7 @@ public class NamedEntitySpawnPacketImpl extends AbstractPacket implements NamedE
     public NamedEntitySpawnPacketImpl(int entityId, String playerName, int x, int y, int z, byte yaw, byte pitch, short currentItem) {
         super();
         this.entityId = entityId;
-        this.playerName = playerName;
+        this.entityName = playerName;
         this.x = x;
         this.y = y;
         this.z = z;
@@ -46,7 +46,7 @@ public class NamedEntitySpawnPacketImpl extends AbstractPacket implements NamedE
 
     @Override
     public String getEntityName() {
-        return playerName;
+        return entityName;
     }
 
     @Override
@@ -82,6 +82,6 @@ public class NamedEntitySpawnPacketImpl extends AbstractPacket implements NamedE
     @Override
     public String getToStringDescription() {
         return String.format("entityId=\"%d\",playerName=\"%s\",x=\"%d\",y=\"%d\",z=\"%d\",yaw=\"%d\",pitch=\"%d\",currentItem=\"%d\"",
-                        entityId, playerName, x, y, z, yaw, pitch, currentItem);
+                        entityId, entityName, x, y, z, yaw, pitch, currentItem);
     }
 }
