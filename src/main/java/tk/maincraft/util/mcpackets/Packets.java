@@ -6,6 +6,11 @@ import java.util.Map;
 import tk.maincraft.util.mcpackets.packet.*;
 
 public final class Packets {
+    /**
+     * The Minecraft protocol-version this version of the library is implementing.
+     */
+    public static final int PROTOCOL_VERSION = 28;
+
     private static final Map<Integer, Class<? extends Packet>> classMappings =
             new HashMap<Integer, Class<? extends Packet>>();
 

@@ -26,15 +26,18 @@ public class SerializationPacketHandler<T extends Packet> implements PacketHandl
                 Serializor serializor = serialize.type().getSerializor();
                 if (serializor instanceof ObjectUsingSerializor) {
                     ObjectUsingSerializor ous = (ObjectUsingSerializor) serializor;
-                    if (ous.getClazz() == byte[].class)
-                        params[i] = ous.read(in, params[serialize.moreInfo()]);
+                    params[i] = ous.read(in, params[serialize.moreInfo()]);
                 } else {
                     params[i] = serializor.read(in);
                 }
-                //params[i] = serInfos.get(i).getSerialize().type().getSerializor().read(in);
                 paramTypes[i] = params[i].getClass();
             }
-            Constructor<? extends T> ctor = implClazz.getConstructor(paramTypes);
+            Constructor<? extends T> ctor;
+            try {
+                ctor = implClazz.getConstructor(paramTypes);
+            } catch (NoSuchMethodException e) {
+                ctor = implClazz.getConstructor(wrappersToPrimitives(paramTypes));
+            }
             return ctor.newInstance(params);
         } catch (Exception e) {
             throw new RuntimeException(e);

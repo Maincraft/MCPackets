@@ -1,8 +1,9 @@
 package tk.maincraft.util.mcpackets.packet.impl;
 
 import tk.maincraft.util.mcpackets.Packet;
+import tk.maincraft.util.mcpackets.serialization.HashcodeAndEqualsStub;
 
-public abstract class AbstractPacket implements Packet {
+public abstract class AbstractPacket extends HashcodeAndEqualsStub implements Packet {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

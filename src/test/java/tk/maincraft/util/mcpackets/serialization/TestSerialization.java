@@ -52,6 +52,15 @@ public class TestSerialization {
     }
 
     @Test
+    public void testSendWithCustomChatPacket() throws Exception {
+        ChatPacket packet = new OtherChatPacket("msg");
+        sender.send(output, packet);
+        verify(output).writeShort(3);
+        verify(output).writeChars("msg");
+        verifyNoMoreInteractions(output);
+    }
+
+    @Test
     public void testToMethodName() throws Exception {
         assertEquals("getProp", toMethodName("prop"));
     }
@@ -62,7 +71,24 @@ public class TestSerialization {
         assertEquals(ChatPacket.class, getPacketInterface(OtherChatPacket.class));
     }
 
+    @Test
+    public void testEquals() throws Exception {
+        ChatPacket originalPacket = new ChatPacketImpl("msg");
+        OtherChatPacket moddedPacket = new OtherChatPacket("msg");
+        assertTrue(originalPacket.equals(moddedPacket));
+        moddedPacket.setMessage("other");
+        assertFalse(originalPacket.equals(moddedPacket));
+        moddedPacket.setMessage("msg");
+        assertTrue(originalPacket.equals(moddedPacket));
+    }
+
     private static final class OtherChatPacket implements ChatPacket {
+        private String msg;
+
+        public OtherChatPacket(String msg) {
+            this.msg = msg;
+        }
+
         @Override
         public int getOpcode() {
             return 0;
@@ -70,7 +96,11 @@ public class TestSerialization {
 
         @Override
         public String getMessage() {
-            return "";
+            return msg;
+        }
+
+        public void setMessage(String msg) {
+            this.msg = msg;
         }
     }
 }

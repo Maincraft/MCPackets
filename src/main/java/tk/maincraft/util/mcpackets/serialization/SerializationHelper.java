@@ -77,4 +77,14 @@ final class SerializationHelper {
     static String toMethodName(String fieldName) {
         return "get" + String.valueOf(fieldName.charAt(0)).toUpperCase() + fieldName.substring(1);
     }
+
+    static Class<?>[] wrappersToPrimitives(Class<?>... wrappers) {
+        for (int i = 0; i < wrappers.length; i++) {
+            try {
+                wrappers[i] = (Class<?>) wrappers[i].getField("TYPE").get(null);
+            } catch (Exception e) {
+            }
+        }
+        return wrappers;
+    }
 }
