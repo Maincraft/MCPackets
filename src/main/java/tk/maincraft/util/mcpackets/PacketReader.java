@@ -16,7 +16,7 @@ public final class PacketReader {
     public static Packet read(DataInput stream) throws IOException, UnknownPacketException {
         int opcode;
         try {
-            opcode = stream.readByte();
+            opcode = stream.readUnsignedByte();
         } catch (SocketTimeoutException e) {
             return null;
         }
