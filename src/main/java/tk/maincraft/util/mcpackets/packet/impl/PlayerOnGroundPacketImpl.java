@@ -19,7 +19,7 @@ public class PlayerOnGroundPacketImpl extends AbstractPacket implements PlayerOn
     }
 
     @Override
-    public boolean isOnGround() {
+    public boolean getOnGround() {
         return onGround;
     }
 

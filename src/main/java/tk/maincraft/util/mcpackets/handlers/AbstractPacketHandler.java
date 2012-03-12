@@ -7,6 +7,7 @@ import tk.maincraft.util.mcpackets.IllegalPacketDataException;
 import tk.maincraft.util.mcpackets.Packet;
 import tk.maincraft.util.mcpackets.PacketHandler;
 
+@Deprecated
 public abstract class AbstractPacketHandler<T extends Packet> implements PacketHandler<T> {
     @Override
     public T handle(DataInput stream, Class<T> packetType) {

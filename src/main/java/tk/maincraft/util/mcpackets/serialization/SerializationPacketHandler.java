@@ -5,6 +5,9 @@ import static tk.maincraft.util.mcpackets.serialization.SerializationHelper.*;
 import java.io.DataInput;
 import java.lang.reflect.Constructor;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import tk.maincraft.util.mcpackets.Packet;
 import tk.maincraft.util.mcpackets.PacketHandler;
 
@@ -30,14 +33,14 @@ public class SerializationPacketHandler<T extends Packet> implements PacketHandl
                 } else {
                     params[i] = serializor.read(in);
                 }
-                paramTypes[i] = params[i].getClass();
+                Class<?> paramClazz = params[i].getClass();
+                if (Map.class.isAssignableFrom(paramClazz))
+                    paramClazz = Map.class;
+                if (Set.class.isAssignableFrom(paramClazz))
+                    paramClazz = Set.class;
+                paramTypes[i] = paramClazz;
             }
-            Constructor<? extends T> ctor;
-            try {
-                ctor = implClazz.getConstructor(paramTypes);
-            } catch (NoSuchMethodException e) {
-                ctor = implClazz.getConstructor(wrappersToPrimitives(paramTypes));
-            }
+            Constructor<? extends T> ctor = implClazz.getConstructor(fixupClasses(paramTypes));
             return ctor.newInstance(params);
         } catch (Exception e) {
             throw new RuntimeException(e);

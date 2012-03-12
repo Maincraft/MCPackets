@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import tk.maincraft.util.mcpackets.packet.KeepAlivePacket;
 
+@Deprecated
 public final class KeepAlivePacketSender extends AbstractPacketSender<KeepAlivePacket> {
     @Override
     public void sendData(DataOutput stream, KeepAlivePacket packet) throws IOException {

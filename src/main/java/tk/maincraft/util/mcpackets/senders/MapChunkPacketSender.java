@@ -4,6 +4,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 import tk.maincraft.util.mcpackets.packet.MapChunkPacket;
 
+@Deprecated
 public final class MapChunkPacketSender extends AbstractPacketSender<MapChunkPacket> {
     @Override
     public void sendData(DataOutput stream, MapChunkPacket packet) throws IOException {

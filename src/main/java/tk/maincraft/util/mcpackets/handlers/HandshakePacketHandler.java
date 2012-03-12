@@ -7,6 +7,7 @@ import tk.maincraft.util.mcpackets.NetUtils;
 import tk.maincraft.util.mcpackets.packet.HandshakePacket;
 import tk.maincraft.util.mcpackets.packet.impl.HandshakePacketImpl;
 
+@Deprecated
 public final class HandshakePacketHandler extends AbstractPacketHandler<HandshakePacket> {
     @Override
     public HandshakePacket doRead(DataInput stream) throws IOException {

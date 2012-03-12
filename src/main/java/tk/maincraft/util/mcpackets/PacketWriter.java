@@ -11,13 +11,12 @@ public final class PacketWriter {
 
     private static PacketSender<Packet> sender = new SerializationPacketSender<Packet>();
 
-    public static void writePacket(DataOutput out, Packet packet)
-            throws UnknownPacketException, UnexpectedSocketIOException {
+    public static void writePacket(DataOutput out, Packet packet) throws UnexpectedSocketIOException {
         try {
             out.write(packet.getOpcode());
             sender.send(out, packet);
         } catch (IOException e) {
-            throw new UnexpectedSocketIOException(e);
+            throw new UnexpectedSocketIOException(packet.getOpcode(), e);
         }
     }
 }

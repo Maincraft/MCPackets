@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import tk.maincraft.util.mcpackets.packet.SpawnPositionPacket;
 
+@Deprecated
 public final class SpawnPositionPacketSender extends AbstractPacketSender<SpawnPositionPacket> {
     @Override
     public void sendData(DataOutput stream, SpawnPositionPacket packet) throws IOException {

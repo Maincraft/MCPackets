@@ -22,34 +22,35 @@ final class SerializationHelper {
     private static final LoadingCache<Class<? extends Packet>, List<SerializationInfo>> serializationInfoCache =
             CacheBuilder.newBuilder().weakKeys().softValues().expireAfterAccess(1, TimeUnit.MINUTES)
             .build(new CacheLoader<Class<? extends Packet>, List<SerializationInfo>>() {
-        @Override
-        public List<SerializationInfo> load(Class<? extends Packet> clazz) throws Exception {
-            // key has to be the interface-class
-            if (!clazz.isInterface())
-                throw new IllegalArgumentException("Key has to be interface!");
-            if (!clazz.getPackage().equals(HandshakePacket.class.getPackage()))
-                throw new IllegalArgumentException("Not in our package!");
-
-            clazz = getImplClass(clazz);
-            // *sigh* now let's get the attributes
-            List<SerializationInfo> serInfos = new LinkedList<SerializationInfo>();
-            Field[] fields = clazz.getDeclaredFields();
-            for (Field f : fields) {
-                f.setAccessible(true);
-                if (f.isAnnotationPresent(Serialize.class))
-                    serInfos.add(new SerializationInfo(f.getAnnotation(Serialize.class), f.getName()));
-                f.setAccessible(false);
-            }
-            Collections.sort(serInfos, new Comparator<SerializationInfo>() {
                 @Override
-                public int compare(SerializationInfo s1, SerializationInfo s2) {
-                    return Integer.valueOf(s1.getSerialize().order())
-                            .compareTo(Integer.valueOf(s2.getSerialize().order()));
+                public List<SerializationInfo> load(Class<? extends Packet> clazz) throws Exception {
+                    // key has to be the interface-class
+                    if (!clazz.isInterface())
+                        throw new IllegalArgumentException("Key has to be interface!");
+                    if (!clazz.getPackage().equals(HandshakePacket.class.getPackage()))
+                        throw new IllegalArgumentException("Not in our package!");
+
+                    clazz = getImplClass(clazz);
+                    // *sigh* now let's get the attributes
+                    List<SerializationInfo> serInfos = new LinkedList<SerializationInfo>();
+                    Field[] fields = clazz.getDeclaredFields();
+                    for (Field f : fields) {
+                        f.setAccessible(true);
+                        if (f.isAnnotationPresent(Serialize.class))
+                            serInfos.add(new SerializationInfo(f.getAnnotation(Serialize.class), f
+                                    .getName()));
+                        f.setAccessible(false);
+                    }
+                    Collections.sort(serInfos, new Comparator<SerializationInfo>() {
+                        @Override
+                        public int compare(SerializationInfo s1, SerializationInfo s2) {
+                            return Integer.valueOf(s1.getSerialize().order()).compareTo(
+                                    Integer.valueOf(s2.getSerialize().order()));
+                        }
+                    });
+                    return Collections.unmodifiableList(serInfos);
                 }
             });
-            return Collections.unmodifiableList(serInfos);
-        }
-    });
 
     static <T> Class<? extends T> getImplClass(Class<T> iFace) throws ClassNotFoundException {
         return Class.forName(iFace.getPackage().getName() + ".impl." + iFace.getSimpleName() + "Impl").asSubclass(iFace);
@@ -78,13 +79,19 @@ final class SerializationHelper {
         return "get" + String.valueOf(fieldName.charAt(0)).toUpperCase() + fieldName.substring(1);
     }
 
-    static Class<?>[] wrappersToPrimitives(Class<?>... wrappers) {
-        for (int i = 0; i < wrappers.length; i++) {
+    static Class<?>[] fixupClasses(Class<?>... classes) {
+        for (int i = 0; i < classes.length; i++) {
             try {
-                wrappers[i] = (Class<?>) wrappers[i].getField("TYPE").get(null);
+                // fix anonymous classes
+                if (classes[i].isAnonymousClass())
+                    classes[i] = classes[i].getSuperclass();
+                // primitives to wrappers
+                else // try...
+                    classes[i] = (Class<?>) classes[i].getField("TYPE").get(null);
             } catch (Exception e) {
             }
         }
-        return wrappers;
+
+        return classes;
     }
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import tk.maincraft.util.mcpackets.packet.PlayerPositionAndLookPacket;
 
+@Deprecated
 public final class PlayerPositionAndLookPacketSender extends AbstractPacketSender<PlayerPositionAndLookPacket> {
     @Override
     public void sendData(DataOutput stream, PlayerPositionAndLookPacket packet)

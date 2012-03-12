@@ -7,6 +7,7 @@ import tk.maincraft.util.mcpackets.NetUtils;
 import tk.maincraft.util.mcpackets.packet.KickPacket;
 import tk.maincraft.util.mcpackets.packet.impl.KickPacketImpl;
 
+@Deprecated
 public final class KickPacketHandler extends AbstractPacketHandler<KickPacket> {
     @Override
     public KickPacket doRead(DataInput stream) throws IOException {

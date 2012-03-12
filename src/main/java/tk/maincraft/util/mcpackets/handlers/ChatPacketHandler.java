@@ -7,6 +7,7 @@ import tk.maincraft.util.mcpackets.NetUtils;
 import tk.maincraft.util.mcpackets.packet.ChatPacket;
 import tk.maincraft.util.mcpackets.packet.impl.ChatPacketImpl;
 
+@Deprecated
 public final class ChatPacketHandler extends AbstractPacketHandler<ChatPacket> {
     @Override
     public ChatPacket doRead(DataInput stream) throws IOException {

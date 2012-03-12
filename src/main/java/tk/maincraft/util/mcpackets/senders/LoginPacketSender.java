@@ -6,6 +6,7 @@ import java.io.IOException;
 import tk.maincraft.util.mcpackets.NetUtils;
 import tk.maincraft.util.mcpackets.packet.LoginPacket;
 
+@Deprecated
 public final class LoginPacketSender extends AbstractPacketSender<LoginPacket> {
     @Override
     public void sendData(DataOutput stream, LoginPacket packet) throws IOException {

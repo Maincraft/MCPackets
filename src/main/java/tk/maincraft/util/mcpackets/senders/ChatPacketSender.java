@@ -6,6 +6,7 @@ import java.io.IOException;
 import tk.maincraft.util.mcpackets.NetUtils;
 import tk.maincraft.util.mcpackets.packet.ChatPacket;
 
+@Deprecated
 public final class ChatPacketSender extends AbstractPacketSender<ChatPacket> {
     @Override
     public void sendData(DataOutput stream, ChatPacket packet) throws IOException {

@@ -5,9 +5,9 @@ import tk.maincraft.util.mcpackets.serialization.Serialize;
 import tk.maincraft.util.mcpackets.serialization.Type;
 
 public class PreChunkPacketImpl extends AbstractPacket implements PreChunkPacket {
-    @Serialize(type = Type.DOUBLE, order = 0)
+    @Serialize(type = Type.INT, order = 0)
     private final int x;
-    @Serialize(type = Type.DOUBLE, order = 1)
+    @Serialize(type = Type.INT, order = 1)
     private final int z;
     @Serialize(type = Type.BOOL, order = 2)
     private final boolean mode;

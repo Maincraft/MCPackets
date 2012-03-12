@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import tk.maincraft.util.mcpackets.packet.EntityRelMovePacket;
 
+@Deprecated
 public final class EntityRelMovePacketSender extends AbstractPacketSender<EntityRelMovePacket> {
     @Override
     public void sendData(DataOutput stream, EntityRelMovePacket packet) throws IOException {

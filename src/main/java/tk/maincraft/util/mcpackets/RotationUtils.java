@@ -1,7 +1,8 @@
 package tk.maincraft.util.mcpackets;
 
-public final class RotationUtils {
-    private RotationUtils() {
+public class RotationUtils {
+    protected RotationUtils() {
+        throw new UnsupportedOperationException();
     }
 
     public static byte floatToByte(float old) {

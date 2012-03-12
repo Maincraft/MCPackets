@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import tk.maincraft.util.mcpackets.packet.PreChunkPacket;
 
+@Deprecated
 public final class PreChunkPacketSender extends AbstractPacketSender<PreChunkPacket> {
     @Override
     public void sendData(DataOutput stream, PreChunkPacket packet) throws IOException {

@@ -6,6 +6,7 @@ import java.io.IOException;
 import tk.maincraft.util.mcpackets.packet.PlayerOnGroundPacket;
 import tk.maincraft.util.mcpackets.packet.impl.PlayerOnGroundPacketImpl;
 
+@Deprecated
 public final class PlayerOnGroundPacketHandler extends AbstractPacketHandler<PlayerOnGroundPacket> {
     @Override
     public PlayerOnGroundPacket doRead(DataInput stream) throws IOException {

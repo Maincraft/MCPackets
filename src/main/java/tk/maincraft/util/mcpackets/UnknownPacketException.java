@@ -5,9 +5,6 @@ import java.io.IOException;
 public class UnknownPacketException extends IOException {
     private static final long serialVersionUID = 1L;
 
-    public UnknownPacketException() {
-    }
-
     public UnknownPacketException(int code) {
         super(createMessage(code));
     }

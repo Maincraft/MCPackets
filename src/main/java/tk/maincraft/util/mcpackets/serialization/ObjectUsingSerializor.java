@@ -11,6 +11,4 @@ abstract class ObjectUsingSerializor<T> implements Serializor<T> {
     }
 
     public abstract T read(DataInput in, Object moreInfo) throws IOException;
-
-    public abstract Class<T> getClazz();
 }

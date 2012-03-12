@@ -7,6 +7,7 @@ import tk.maincraft.util.mcpackets.NetUtils;
 import tk.maincraft.util.mcpackets.packet.LoginPacket;
 import tk.maincraft.util.mcpackets.packet.impl.LoginPacketImpl;
 
+@Deprecated
 public final class LoginPacketHandler extends AbstractPacketHandler<LoginPacket> {
     @Override
     public LoginPacket doRead(DataInput stream) throws IOException {

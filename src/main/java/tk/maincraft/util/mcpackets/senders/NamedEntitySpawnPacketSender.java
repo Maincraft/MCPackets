@@ -6,6 +6,7 @@ import java.io.IOException;
 import tk.maincraft.util.mcpackets.NetUtils;
 import tk.maincraft.util.mcpackets.packet.NamedEntitySpawnPacket;
 
+@Deprecated
 public final class NamedEntitySpawnPacketSender extends AbstractPacketSender<NamedEntitySpawnPacket> {
     @Override
     public void sendData(DataOutput stream, NamedEntitySpawnPacket packet) throws IOException {

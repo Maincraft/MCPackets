@@ -6,6 +6,7 @@ import java.io.IOException;
 import tk.maincraft.util.mcpackets.packet.PlayerPositionPacket;
 import tk.maincraft.util.mcpackets.packet.impl.PlayerPositionPacketImpl;
 
+@Deprecated
 public final class PlayerPositionPacketHandler extends AbstractPacketHandler<PlayerPositionPacket> {
     @Override
     public PlayerPositionPacket doRead(DataInput stream) throws IOException {

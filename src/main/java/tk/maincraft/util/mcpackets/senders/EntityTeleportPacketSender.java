@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import tk.maincraft.util.mcpackets.packet.EntityTeleportPacket;
 
+@Deprecated
 public final class EntityTeleportPacketSender extends AbstractPacketSender<EntityTeleportPacket> {
     @Override
     public void sendData(DataOutput stream, EntityTeleportPacket packet) throws IOException {

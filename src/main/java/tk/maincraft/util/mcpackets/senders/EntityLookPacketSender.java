@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import tk.maincraft.util.mcpackets.packet.EntityLookPacket;
 
+@Deprecated
 public final class EntityLookPacketSender extends AbstractPacketSender<EntityLookPacket> {
     @Override
     public void sendData(DataOutput stream, EntityLookPacket packet) throws IOException {

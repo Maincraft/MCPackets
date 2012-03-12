@@ -6,6 +6,7 @@ import java.io.IOException;
 import tk.maincraft.util.mcpackets.NetUtils;
 import tk.maincraft.util.mcpackets.packet.PlayerListItemPacket;
 
+@Deprecated
 public final class PlayerListItemPacketSender extends AbstractPacketSender<PlayerListItemPacket> {
     @Override
     public void sendData(DataOutput stream, PlayerListItemPacket packet) throws IOException {

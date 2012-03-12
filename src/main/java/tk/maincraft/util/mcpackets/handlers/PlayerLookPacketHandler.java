@@ -6,6 +6,7 @@ import java.io.IOException;
 import tk.maincraft.util.mcpackets.packet.PlayerLookPacket;
 import tk.maincraft.util.mcpackets.packet.impl.PlayerLookPacketImpl;
 
+@Deprecated
 public final class PlayerLookPacketHandler extends AbstractPacketHandler<PlayerLookPacket> {
     @Override
     public PlayerLookPacket doRead(DataInput stream) throws IOException {

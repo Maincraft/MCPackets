@@ -26,10 +26,6 @@ public final class PacketReader {
             return null;
         }
 
-//        PacketHandler<?> packetHandler = PacketHandlerFactory.getPacketHandler(opcode);
-//        Packet packet = null;
-//        if (packetHandler != null)
-//            packet = packetHandler.handle(stream);
         return handler.handle(stream, Packets.lookupPacket(opcode));
     }
 }
