@@ -18,7 +18,7 @@ public class SerializationPacketSender<T extends Packet> implements PacketSender
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void send(DataOutput stream, T packet) {
         try {
-            Class<? extends Packet> iFace = getPacketInterface(packet.getClass());
+            Class<? extends Packet> iFace = packet.getPacketType();
             List<SerializationInfo> serInfos = getSerializationInfos(iFace);
             /*
              * dirty: we have to have "getProperty()" to get "property"

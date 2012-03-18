@@ -10,6 +10,7 @@ import java.io.DataOutput;
 import org.junit.Before;
 import org.junit.Test;
 
+import tk.maincraft.util.mcpackets.Packet;
 import tk.maincraft.util.mcpackets.packet.ChatPacket;
 import tk.maincraft.util.mcpackets.packet.impl.ChatPacketImpl;
 
@@ -69,6 +70,8 @@ public class TestSerialization {
     public void testGetInterface() throws Exception {
         assertEquals(ChatPacket.class, getPacketInterface(ChatPacketImpl.class));
         assertEquals(ChatPacket.class, getPacketInterface(OtherChatPacket.class));
+        assertEquals(ChatPacket.class, new ChatPacketImpl("").getPacketType());
+        assertEquals(ChatPacket.class, new OtherChatPacket("").getPacketType());
     }
 
     @Test
@@ -101,6 +104,11 @@ public class TestSerialization {
 
         public void setMessage(String msg) {
             this.msg = msg;
+        }
+
+        @Override
+        public Class<? extends Packet> getPacketType() {
+            return ChatPacket.class;
         }
     }
 }

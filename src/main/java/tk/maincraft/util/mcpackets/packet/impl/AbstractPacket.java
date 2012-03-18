@@ -3,7 +3,12 @@ package tk.maincraft.util.mcpackets.packet.impl;
 import tk.maincraft.util.mcpackets.Packet;
 import tk.maincraft.util.mcpackets.serialization.HashcodeAndEqualsStub;
 
-public abstract class AbstractPacket extends HashcodeAndEqualsStub implements Packet {
+abstract class AbstractPacket extends HashcodeAndEqualsStub implements Packet {
+    @Override
+    public Class<? extends Packet> getPacketType() {
+        return super.getInterface();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

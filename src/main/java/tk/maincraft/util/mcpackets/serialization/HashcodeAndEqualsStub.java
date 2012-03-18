@@ -8,19 +8,23 @@ import java.util.List;
 import java.util.ListIterator;
 
 import tk.maincraft.util.mcpackets.Packet;
-import tk.maincraft.util.mcpackets.packet.impl.AbstractPacket;
 
 /**
- * <b>Only {@link AbstractPacket} should extend this!</b>
+ * <b>Only {@code AbstractPacket} should extend this!</b>
  */
 public abstract class HashcodeAndEqualsStub {
+    private final Class<? extends Packet> packetType =
+            getPacketInterface(this.getClass().asSubclass(Packet.class));
+    protected Class<? extends Packet> getInterface() {
+        return packetType;
+    }
+
     @Override
     public int hashCode() {
         try {
             final int prime = 31;
             int result = 1;
-            List<SerializationInfo> serInfo = getSerializationInfos(getPacketInterface(
-                    this.getClass().asSubclass(Packet.class)));
+            List<SerializationInfo> serInfo = getSerializationInfos(packetType);
             ListIterator<SerializationInfo> iterator = serInfo.listIterator();
             while (iterator.hasNext()) {
                 SerializationInfo info = iterator.next();
@@ -43,12 +47,10 @@ public abstract class HashcodeAndEqualsStub {
                 return true;
             if (obj == null)
                 return false;
-            if (getPacketInterface(getClass().asSubclass(Packet.class))
-                    != getPacketInterface(obj.getClass().asSubclass(Packet.class)))
+            if (packetType != ((Packet) obj).getPacketType())
                 return false;
 
-            List<SerializationInfo> serInfo = getSerializationInfos(getPacketInterface(
-                    this.getClass().asSubclass(Packet.class)));
+            List<SerializationInfo> serInfo = getSerializationInfos(packetType);
             ListIterator<SerializationInfo> iterator = serInfo.listIterator();
             while (iterator.hasNext()) {
                 SerializationInfo info = iterator.next();
@@ -58,8 +60,7 @@ public abstract class HashcodeAndEqualsStub {
                 field.setAccessible(false);
 
                 // now use the getter to get their val
-                Method getter = getPacketInterface(this.getClass().asSubclass(Packet.class))
-                        .getMethod(toMethodName(info.getName()));
+                Method getter = packetType.getMethod(toMethodName(info.getName()));
                 Object theirVal = getter.invoke(obj);
                 if (!ourVal.equals(theirVal))
                     return false;
