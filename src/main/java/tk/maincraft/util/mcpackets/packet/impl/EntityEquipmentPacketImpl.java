@@ -1,11 +1,17 @@
 package tk.maincraft.util.mcpackets.packet.impl;
 
 import tk.maincraft.util.mcpackets.packet.EntityEquipmentPacket;
+import tk.maincraft.util.mcpackets.serialization.Serialize;
+import tk.maincraft.util.mcpackets.serialization.Type;
 
 public class EntityEquipmentPacketImpl extends AbstractPacket implements EntityEquipmentPacket {
+    @Serialize(type = Type.INT, order = 0)
     private final int entityId;
+    @Serialize(type = Type.SHORT, order = 1)
     private final short slot;
+    @Serialize(type = Type.SHORT, order = 2)
     private final short itemId;
+    @Serialize(type = Type.SHORT, order = 3)
     private final short dataValue;
 
     public EntityEquipmentPacketImpl(int entityId, short slot, short itemId, short dataValue) {
