@@ -9,7 +9,7 @@ public final class Packets {
     /**
      * The Minecraft protocol-version this version of the library is implementing.
      */
-    public static final int PROTOCOL_VERSION = 28;
+    public static final int PROTOCOL_VERSION = 29;
 
     private static final Map<Integer, Class<? extends Packet>> classMappings =
             new HashMap<Integer, Class<? extends Packet>>();
