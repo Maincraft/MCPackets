@@ -8,9 +8,9 @@ public class PlayerPositionAndLookPacketImpl extends AbstractPacket implements P
     @Serialize(type = Type.DOUBLE, order = 0)
     private final double x;
     @Serialize(type = Type.DOUBLE, order = 1)
-    private final double y;
+    private final double yOrStance;
     @Serialize(type = Type.DOUBLE, order = 2)
-    private final double stance;
+    private final double stanceOrY;
     @Serialize(type = Type.DOUBLE, order = 3)
     private final double z;
     @Serialize(type = Type.FLOAT, order = 4)
@@ -20,11 +20,11 @@ public class PlayerPositionAndLookPacketImpl extends AbstractPacket implements P
     @Serialize(type = Type.BOOL, order = 6)
     private final boolean onGround;
 
-    public PlayerPositionAndLookPacketImpl(double x, double y, double stance, double z, float yaw, float pitch, boolean onGround) {
+    public PlayerPositionAndLookPacketImpl(double x, double yOrStance, double stanceOrY, double z, float yaw, float pitch, boolean onGround) {
         super();
         this.x = x;
-        this.y = y;
-        this.stance = stance;
+        this.yOrStance = yOrStance;
+        this.stanceOrY = stanceOrY;
         this.z = z;
         this.yaw = yaw;
         this.pitch = pitch;
@@ -42,13 +42,13 @@ public class PlayerPositionAndLookPacketImpl extends AbstractPacket implements P
     }
 
     @Override
-    public double getY() {
-        return y;
+    public double getYOrStance() {
+        return yOrStance;
     }
 
     @Override
-    public double getStance() {
-        return stance;
+    public double getStanceOrY() {
+        return stanceOrY;
     }
 
     @Override
@@ -73,8 +73,8 @@ public class PlayerPositionAndLookPacketImpl extends AbstractPacket implements P
 
     @Override
     public String getToStringDescription() {
-        return String.format(
-                "x=\"%f\",y=\"%f\",stance=\"%f\",z=\"%f\",yaw=\"%f\",pitch=\"%f\",onGround=\"%b\"",
-                x, y, stance, z, yaw, pitch, onGround);
+        return String.format("x=\"%f\",yOrStance=\"%f\",stanceOrY=\"%f\",z=\"%f\","
+                + "yaw=\"%f\",pitch=\"%f\",onGround=\"%b\"",
+                x, yOrStance, stanceOrY, z, yaw, pitch, onGround);
     }
 }
