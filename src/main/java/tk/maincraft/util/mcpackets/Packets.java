@@ -79,6 +79,7 @@ public final class Packets {
         registerPacket(0x84, UpdateTileEntityPacket.class);
         registerPacket(0xC8, IncrementStatisticPacket.class);
         registerPacket(0xC9, PlayerListItemPacket.class);
+        registerPacket(0xCA, PlayerAbilitiesPacket.class);
         registerPacket(0xFA, PluginMessagePacket.class);
         registerPacket(0xFE, ServerListPingPacket.class);
         registerPacket(0xFF, KickPacket.class);
