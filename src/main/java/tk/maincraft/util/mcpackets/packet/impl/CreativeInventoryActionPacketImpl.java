@@ -9,7 +9,7 @@ public class CreativeInventoryActionPacketImpl extends AbstractPacket implements
         CreativeInventoryActionPacket {
     @Serialize(type = Type.SHORT, order = 0)
     private final short slot;
-    @Serialize(type = Type.ITEMSTACK, order = 0)
+    @Serialize(type = Type.ITEMSTACK, order = 1)
     private final ItemStack item;
 
     public CreativeInventoryActionPacketImpl(short slot, ItemStack item) {
