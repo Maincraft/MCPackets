@@ -9,8 +9,8 @@ public class PlayerDiggingPacketImpl extends AbstractPacket implements PlayerDig
     private final byte status;
     @Serialize(type = Type.INT, order = 1)
     private final int x;
-    @Serialize(type = Type.BYTE, order = 2)
-    private final byte y;
+    @Serialize(type = Type.UNSIGNED_BYTE, order = 2)
+    private final int y;
     @Serialize(type = Type.INT, order = 3)
     private final int z;
     @Serialize(type = Type.BYTE, order = 4)
@@ -41,7 +41,7 @@ public class PlayerDiggingPacketImpl extends AbstractPacket implements PlayerDig
     }
 
     @Override
-    public byte getY() {
+    public int getY() {
         return y;
     }
 

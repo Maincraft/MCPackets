@@ -5,7 +5,7 @@ import tk.maincraft.util.mcpackets.Packet;
 public interface PlayerDiggingPacket extends Packet {
     byte getStatus();
     int getX();
-    byte getY();
+    int getY();
     int getZ();
     byte getFace();
 }
