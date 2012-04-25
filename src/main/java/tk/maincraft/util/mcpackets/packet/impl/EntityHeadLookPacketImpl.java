@@ -7,7 +7,7 @@ import tk.maincraft.util.mcpackets.serialization.Type;
 public class EntityHeadLookPacketImpl extends AbstractPacket implements EntityHeadLookPacket {
     @Serialize(type = Type.INT, order = 0)
     private final int entityId;
-    @Serialize(type = Type.BYTE, order = 0)
+    @Serialize(type = Type.BYTE, order = 1)
     private final byte headYaw;
 
     public EntityHeadLookPacketImpl(int entityId, byte headYaw) {
